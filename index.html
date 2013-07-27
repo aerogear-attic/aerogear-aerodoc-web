@@ -10,14 +10,12 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script src='http://code.jquery.com/jquery-1.9.1.min.js'></script>
 <script src='http://cdn.sockjs.org/sockjs-0.3.min.js'></script>
-<script>
-        localStorage.removeItem("ag-push-store");
+    <script>
         var AeroGearSimplePush = {
-                variantID: "02e5900c-17b2-49e8-b689-13ccbc960617",
-                unifiedPushServerURL: "http://localhost:8080/ag-push/rest/registry/device",
-                simplePushServerURL: "http://spsvertx-aerogearkb.rhcloud.com/simplepush"
-            };
-</script>
+            simplePushServerURL: "http://localhost:7777/simplepush",
+            variantID: "36733be4-d664-45dd-91e9-cbb1299078b6"
+        };
+    </script>
 <script src="scripts/vendor/aerogear.custom.js"></script>
 <script src="scripts/vendor/angular.js"></script>
 <script src="scripts/app.js"></script>
