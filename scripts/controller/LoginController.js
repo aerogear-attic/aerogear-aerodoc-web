@@ -1,6 +1,6 @@
 'use strict';
 
-function LoginController($scope, $routeParams, $location, dataService, notifierService) {
+function LoginController($scope, $routeParams, $location,$rootScope, dataService, notifierService) {
 
 	var restAuth = dataService.restAuth;
 
@@ -14,27 +14,15 @@ function LoginController($scope, $routeParams, $location, dataService, notifierS
 				var role = $.inArray("admin", data.roles) >= 0 ? 1 : 0;
 				sessionStorage.setItem("username", data.loginName);
 				sessionStorage.setItem("access", role);
-                //AeroGear.SimplePushClient("http://localhost:7777/simplepush", notifierService.connector)
+                AeroGear.SimplePushClient({ simplePushServerURL: "http://localhost:7777/simplepush", onConnect: function() {
+                  var message = "loginDone";
+                  $rootScope.$broadcast('loginDone', message);
+                  notifierService.connector();
+                } });
                 $location.path('/Leads');
 				$scope.$apply();
 
-			},
-			error : function(data) {
 
-			}
-		});
-	};
-
-	$scope.enroll = function() {
-		sessionStorage.removeItem("username");
-		sessionStorage.removeItem("access");
-		var user = $scope.user;
-		restAuth.enroll(user, {
-			success : function(data) {
-				var role = $.inArray("admin", data.roles) >= 0 ? 1 : 0;
-				sessionStorage.setItem("username", data.loginName);
-				sessionStorage.setItem("access", role);
-				$scope.$apply();
 			},
 			error : function(data) {
 

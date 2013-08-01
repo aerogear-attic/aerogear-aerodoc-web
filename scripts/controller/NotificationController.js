@@ -3,7 +3,8 @@
 function ShowNotificationController($scope, $rootScope, $routeParams, $location,
 		dataService) {
 	var showBar = false;
-	navigator.setMessageHandler("push", function(message) {
+    $scope.$on('loginDone', function(e,arg){
+    navigator.setMessageHandler("push", function(message) {
 		console.log("Message received" + message.channelID);
 		showBar = true;
 		var message = "refresh";
@@ -11,7 +12,7 @@ function ShowNotificationController($scope, $rootScope, $routeParams, $location,
 		$scope.$apply();
 
 	});
-	
+    });
 	$scope.$on('hideNotif', function(e,arg){
 		showBar = false;
 		$scope.$apply();

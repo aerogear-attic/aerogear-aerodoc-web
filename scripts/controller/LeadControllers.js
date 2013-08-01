@@ -25,7 +25,7 @@ function SearchLeadController($scope, $location, $filter, dataService) {
 				}
 				$scope.$apply();
 			},
-			statusCode : {
+			error : {
 				401 : function(jqXHR) {
 					var restAuth = dataService.restAuth;
 					restAuth.logout();
@@ -278,8 +278,8 @@ function ShowLeadController($scope, $rootScope, $routeParams, $location, $filter
 		leadPipe.read({
 			id : $routeParams.LeadId,
 			success : function(data) {
-				self.original = data.entity;
-				$scope.lead = data.entity;
+				self.original = data;
+				$scope.lead = data;
 				$scope.$apply();
 			},
 			statusCode : {

@@ -24,7 +24,7 @@ aerodoc.factory("notifierService", function() {
       leadEndpoint = event.target.result;
       var leadMetadata = {
         deviceToken: leadEndpoint.channelID,
-        alias: sessionStorage.setItem("username"),
+        alias: sessionStorage.getItem("username"),
         category: "lead"
       }
       UPClient.registerWithPushServer(leadMetadata);
