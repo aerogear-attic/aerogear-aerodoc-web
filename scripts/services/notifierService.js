@@ -1,10 +1,11 @@
-(function () {
-  var leadEndpoint, leadRequest, broadcastRequest, broadcastEndpoint, SPClient,
+"use strict";
+
+aerodoc.factory("notifierService", function() {
+  var leadEndpoint, leadRequest, broadcastRequest, broadcastEndpoint,
       UPClient = AeroGear.UnifiedPushClient("ba3cfa4b-7f47-44a1-bdae-0dc36041bdb2", "1161fa49-2c5b-4101-8102-ea747606d333", "http://localhost:8080/ag-push/rest/registry/device");
 
-  console.log("Web Socket opened!");
-
-  function spConnect() {
+  return {
+    connector : function(){
     broadcastRequest = navigator.push.register();
     broadcastRequest.onsuccess = function (event) {
       broadcastEndpoint = event.target.result;
@@ -32,10 +33,6 @@
       console.log(localStorage.getItem(leadEndpoint.channelID) || 1);
 
     };
-
-  }
-
-SPClient = AeroGear.SimplePushClient("http://localhost:7777/simplepush", spConnect)
-
-})();
-
+    }
+  };
+});
