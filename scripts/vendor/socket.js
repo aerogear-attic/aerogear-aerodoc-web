@@ -22,8 +22,9 @@
     leadRequest.onsuccess = function (event) {
       leadEndpoint = event.target.result;
       var leadMetadata = {
-        deviceToken: broadcastEndpoint.channelID,
-        alias: "maria"
+        deviceToken: leadEndpoint.channelID,
+        alias: "maria",
+        category: "lead"
       }
       UPClient.registerWithPushServer(leadMetadata);
 
