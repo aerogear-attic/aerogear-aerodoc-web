@@ -9,13 +9,10 @@ function ShowNotificationController($scope, $rootScope, $routeParams, $location,
 		showBar = true;
 		var message = "refresh";
 		$rootScope.$broadcast('refreshLeads', message);
-		$scope.$apply();
-
 	});
     });
 	$scope.$on('hideNotif', function(e,arg){
 		showBar = false;
-		$scope.$apply();
 	});
 
 	$scope.showNotification = function() {

@@ -87,6 +87,7 @@ function SearchLeadController($scope, $location, $filter, dataService) {
 };
 
 function SearchAcceptedLeadController($scope, $filter, dataService) {
+    $rootScope.$broadcast('hideNotif', message);
 	$scope.filter = $filter;
 	$scope.search = {};
 	$scope.currentPage = 0;
@@ -102,7 +103,6 @@ function SearchAcceptedLeadController($scope, $filter, dataService) {
 
 	$scope.performSearch = function() {
 		$scope.searchResults = leadStore.read();
-		$scope.$apply();
 	};
 
 	$scope.previous = function() {
@@ -152,109 +152,6 @@ function SearchAcceptedLeadController($scope, $filter, dataService) {
 
 	$scope.performSearch();
 
-};
-function NewLeadController($scope, $location, dataService) {
-	var leadPipe = dataService.leadPipe;
-	$scope.disabled = false;
-
-	$scope.save = function() {
-		leadPipe.save($scope.lead, {
-			success : function(data) {
-				$location.path('/Leads');
-				$scope.$apply();
-			},
-			statusCode : {
-				401 : function(jqXHR) {
-					$("#auth-error-box").modal();
-					var restAuth = dataService.restAuth;
-					restAuth.logout();
-					sessionStorage.removeItem("username");
-					sessionStorage.removeItem("access");
-					$scope.$apply();
-				}
-			}
-		});
-	};
-
-	$scope.cancel = function() {
-		$location.path("/Leads");
-	};
-}
-
-function EditLeadController($scope, $routeParams, $location, dataService) {
-	var self = this;
-	$scope.disabled = false;
-	var leadPipe = dataService.leadPipe;
-	var saleAgentPipe = dataService.saleAgentPipe;
-
-	$scope.get = function() {
-		leadPipe.read({
-			id : $routeParams.LeadId,
-			success : function(data) {
-				self.original = data.entity;
-				$scope.lead = data.entity;
-				$scope.$apply();
-			},
-			statusCode : {
-				401 : function(jqXHR) {
-					$("#auth-error-box").modal();
-					var restAuth = dataService.restAuth;
-					restAuth.logout();
-					sessionStorage.removeItem("username");
-					sessionStorage.removeItem("access");
-					$scope.$apply();
-				}
-			}
-		});
-	};
-
-	$scope.isClean = function() {
-		return angular.equals(self.original, $scope.lead);
-	};
-
-	$scope.save = function() {
-		leadPipe.save($scope.lead, {
-			success : function(data) {
-				$location.path('/Leads');
-				$scope.$apply();
-			},
-			statusCode : {
-				401 : function(jqXHR) {
-					$("#auth-error-box").modal();
-					var restAuth = dataService.restAuth;
-					restAuth.logout();
-					sessionStorage.removeItem("username");
-					sessionStorage.removeItem("access");
-					$scope.$apply();
-				}
-			}
-		});
-	};
-
-	$scope.cancel = function() {
-		$location.path("/Leads");
-	};
-
-	$scope.remove = function() {
-		leadPipe.remove($scope.lead, {
-			success : function(data) {
-				$location.path('/Leads');
-				$scope.$apply();
-			},
-			statusCode : {
-				401 : function(jqXHR) {
-					$("#auth-error-box").modal();
-					var restAuth = dataService.restAuth;
-					restAuth.logout();
-					sessionStorage.removeItem("username");
-					sessionStorage.removeItem("access");
-					$scope.$apply();
-				}
-			}
-		});
-	};
-
-	$scope.get();
 };
 
 function ShowLeadController($scope, $rootScope, $routeParams, $location, $filter,

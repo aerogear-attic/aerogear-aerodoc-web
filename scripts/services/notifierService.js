@@ -13,11 +13,11 @@ aerodoc.factory("notifierService", function() {
         deviceToken: broadcastEndpoint.channelID,
         category: "broadcast"
       }
+
       UPClient.registerWithPushServer(broadCastMetadata);
       console.log("Subscribed to Broadcast messages on " + broadcastEndpoint.channelID);
       console.log(localStorage.getItem(broadcastEndpoint.channelID) || 1);
-
-    };
+     };
 
     leadRequest = navigator.push.register();
     leadRequest.onsuccess = function (event) {
@@ -27,12 +27,11 @@ aerodoc.factory("notifierService", function() {
         alias: sessionStorage.getItem("username"),
         category: "lead"
       }
-      UPClient.registerWithPushServer(leadMetadata);
 
+      UPClient.registerWithPushServer(leadMetadata);
       console.log("Subscribed to lead messages on " + leadEndpoint.channelID);
       console.log(localStorage.getItem(leadEndpoint.channelID) || 1);
-
-    };
+     };
     }
   };
 });

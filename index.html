@@ -22,6 +22,11 @@
 <script src="scripts/controller/NotificationController.js"></script>
 
 <script src="scripts/filters.js"></script>
+<script>
+    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("access");
+    localStorage.removeItem("ag-push-store");
+</script>
 </head>
 <body>
 	<div class="topcoat-navigation-bar">
@@ -50,7 +55,7 @@
 			</div>
 		</aside>
 	</form>
-	<span class="topcoat-notification" ng-show="showNotification()" ng-controller="ShowNotificationController">A new Lead has been pushed</span>
+	<span class="topcoat-notification" ng-show="showNotification()" ng-controller="ShowNotificationController">The lead list has been refreshed</span>
 	<div ng-view>
 		
 	</div>
