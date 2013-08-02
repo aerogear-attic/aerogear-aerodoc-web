@@ -102,8 +102,7 @@ function SearchLeadController($scope, $location, $filter, dataService) {
 
 };
 
-function SearchAcceptedLeadController($scope, $filter, dataService) {
-    $rootScope.$broadcast('hideNotif', message);
+function SearchAcceptedLeadController($scope, $filter,$rootScope, dataService) {
 	$scope.filter = $filter;
 	$scope.search = {};
 	$scope.currentPage = 0;
