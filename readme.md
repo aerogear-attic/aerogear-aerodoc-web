@@ -11,17 +11,15 @@ It acts as a client for the aerodoc backend application : https://github.com/aer
 
 ## Configuration
 
-You must have a valid ```variantID``` and a ```variantSecret```, these can be set on the ```notifierService.js``` file :
+In app.js you can set  :
 
-```
-UPClient = AeroGear.UnifiedPushClient("{variantID}", "{variantSecret}", "http://localhost:8080/ag-push/rest/registry/device");
-```
+* variantID
+* variantSecret
+* Base URL of AeroDoc backend
+* SimplePush Server URL
+* Unified Push Server URL
+
 
 ## Deployment
 
-Be sure to deploy your app on a Web Server, you are free to use whatever you want. For instance, if you have Python on your machine simply run :
-
-```
-python -m SimpleHTTPServer
-```
-
+For now, to get it working, you have to deploy the client under the aerodoc sub context, for instance ```/client``` . Please deploy your AeroDoc Back End as a exploded war and copy this project under ```/client``` under ```src/main/webapp```
