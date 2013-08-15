@@ -1,13 +1,13 @@
-# aerogear-push-quickstart-web
+# aerogear-aerodoc-web
 
-This Web Application is a showcase / quickstart part of Aerogear's Unified Push facilities.
-It acts as a client for the aerodoc backend application : https://github.com/aerogear/aerogear-push-quickstart-backend
+This Web Application is a showcase / quickstart part of Aerogear's UnifiedPush facilities.
+It acts as a client for the AeroDoc backend application : https://github.com/aerogear/aerogear-aerodoc-backend
 
 ## Prerequisites
 
-* Be sure to have a running instance of a Push Server. Instructions can be found [here](https://github.com/aerogear/aerogear-unified-push-server).
-* Be sure to have a running instance of a Simple Push Server. Instructions can be found [here](https://github.com/aerogear/aerogear-simple-push-server)
-* Be sure to have a running instance of Aerodoc. Instructions can be found [here](https://github.com/aerogear/aerogear-push-quickstart-backend)
+* Be sure to have a running instance of the UnifiedPush Server. Instructions can be found [here](https://github.com/aerogear/aerogear-unifiedpush-server).
+* Be sure to have a running instance of the SimplePush Server. Instructions can be found [here](https://github.com/aerogear/aerogear-simplepush-server)
+* Be sure to have a running instance of Aerodoc. Instructions can be found [here](https://github.com/aerogear/aerogear-aerodoc-backend)
 
 ## Configuration
 
