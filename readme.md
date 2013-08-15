@@ -17,7 +17,7 @@ In app.js you can set  :
 * variantSecret
 * Base URL of AeroDoc backend
 * SimplePush Server URL
-* Unified Push Server URL
+* UnifiedPush Server URL
 
 
 ## Deployment
