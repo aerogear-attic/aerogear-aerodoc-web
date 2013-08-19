@@ -22,4 +22,4 @@ In app.js you can set  :
 
 ## Deployment
 
-For now, to get it working, you have to deploy the client under the aerodoc sub context, for instance ```/client``` . Please deploy your AeroDoc Back End as a exploded war and copy this project under ```/client``` under ```src/main/webapp```
+For now, to get it working, you have to deploy the client under the aerodoc sub context, for instance ```/client``` . Please deploy your AeroDoc Back End as a exploded war and copy this project under ```src/main/webapp``` replacing the existing version found there.
