@@ -17,51 +17,54 @@
 "use strict";
 
 aerodoc.factory("notifierService", function() {
-  var leadEndpoint, leadRequest, broadcastRequest, broadcastEndpoint,
-      UPClient = AeroGear.UnifiedPushClient(aeroConfig.variantID, aeroConfig.variantSecret, aeroConfig.pushServerURL+ "/rest/registry/device");
+    var leadEndpoint, leadRequest, broadcastRequest, broadcastEndpoint,
+        UPClient = AeroGear.UnifiedPushClient(aeroConfig.variantID, aeroConfig.variantSecret, aeroConfig.pushServerURL+ "/rest/registry/device");
 
-  return {
-    connector : function(){
-    broadcastRequest = navigator.push.register();
-    broadcastRequest.onsuccess = function (event) {
-      broadcastEndpoint = event.target.result;
+    return {
+        connector : function(){
+            broadcastRequest = navigator.push.register();
+            broadcastRequest.onsuccess = function (event) {
+                broadcastEndpoint = event.target.result;
 
-      // first registration?
-      if ( broadcastEndpoint.pushEndpoint ) {
-        var broadCastMetadata = {
-          deviceToken: broadcastEndpoint.channelID,
-          category: "broadcast",
-          simplePushEndpoint: broadcastEndpoint.pushEndpoint
+                // first registration?
+                if ( broadcastEndpoint.pushEndpoint ) {
+                    var broadCastSettings = {
+                        metadata: {
+                            deviceToken: broadcastEndpoint.channelID,
+                            simplePushEndpoint: broadcastEndpoint.pushEndpoint
+                        }
+                    }
+
+                    UPClient.registerWithPushServer(broadCastSettings);
+                    console.log("Subscribed to Broadcast messages on " + broadcastEndpoint.channelID);
+                    console.log(localStorage.getItem(broadcastEndpoint.channelID) || 1);
+                } else {
+                    console.log("Already registered");
+                }
+            };
+
+            leadRequest = navigator.push.register();
+            leadRequest.onsuccess = function (event) {
+                leadEndpoint = event.target.result;
+
+                // first registration?
+                if ( broadcastEndpoint.pushEndpoint ) {
+                    var leadSettings = {
+                        metadata: {
+                            deviceToken: leadEndpoint.channelID,
+                            alias: sessionStorage.getItem("username"),
+                            categories: ["lead"],
+                            simplePushEndpoint: broadcastEndpoint.pushEndpoint
+                        }
+                    }
+
+                    UPClient.registerWithPushServer(leadSettings);
+                    console.log("Subscribed to lead messages on " + leadEndpoint.channelID);
+                    console.log(localStorage.getItem(leadEndpoint.channelID) || 1);
+                } else {
+                    console.log("Already registered");
+                }
+            };
         }
-
-        UPClient.registerWithPushServer(broadCastMetadata);
-        console.log("Subscribed to Broadcast messages on " + broadcastEndpoint.channelID);
-        console.log(localStorage.getItem(broadcastEndpoint.channelID) || 1);
-      } else {
-        console.log("Already registered");
-      }
     };
-
-    leadRequest = navigator.push.register();
-    leadRequest.onsuccess = function (event) {
-      leadEndpoint = event.target.result;
-
-      // first registration?
-      if ( broadcastEndpoint.pushEndpoint ) {
-        var leadMetadata = {
-          deviceToken: leadEndpoint.channelID,
-          alias: sessionStorage.getItem("username"),
-          category: "lead",
-          simplePushEndpoint: broadcastEndpoint.pushEndpoint
-        }
-
-        UPClient.registerWithPushServer(leadMetadata);
-        console.log("Subscribed to lead messages on " + leadEndpoint.channelID);
-        console.log(localStorage.getItem(leadEndpoint.channelID) || 1);
-      } else {
-        console.log("Already registered");
-      }
-     };
-    }
-  };
 });
