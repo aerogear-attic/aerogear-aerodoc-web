@@ -127,3 +127,14 @@ ul {
 .settings {
 	text-align: center;
 }
+
+@media(max-width:768px) {
+    .topcoat-overlay {
+        width: auto;
+        margin: 0 5%;
+    }
+
+    .quarter {
+        width: auto;
+    }
+}
