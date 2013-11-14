@@ -16,8 +16,16 @@
     limitations under the License.
 
 -->
-<div>
-<p><h3>Lead Name :</h3> {{lead.name}}</p>
-<p><h3>Lead Location :</h3> {{lead.location}}</p>
-<a class="topcoat-button" style="COLOR: #ffffff;"  ng-click="save()">Accept</a>
+<div class="topcoat-list__container">
+    <ul class="topcoat-list">
+        <li class="topcoat-list__item">
+            <h3>Lead Name :</h3>{{lead.name}}
+        </li>
+        <li class="topcoat-list__item">
+            <h3>Lead Location :</h3>{{lead.location}}
+        </li>
+        <li class="topcoat-list__item">
+            <a class="topcoat-button" style="COLOR: #ffffff;" ng-click="save()">Accept</a>
+        </li>
+    </ul>
 </div>
