@@ -39,6 +39,14 @@ aerodoc.factory("dataService", function() {
 				authenticator : this.restAuth
 			}
 		}).pipes.leads,
+		saleAgentPipe : AeroGear.Pipeline({
+			name : "saleagents",
+			settings : {
+				baseURL : serverUrl + "/aerodoc/rest/",
+				endpoint : "saleagents",
+				authenticator : this.restAuth				
+			}
+		}).pipes.saleagents,
 		leadStore : AeroGear.DataManager({
 			name : "Lead",
 			type : "SessionLocal",

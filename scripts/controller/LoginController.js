@@ -30,6 +30,17 @@ function LoginController($scope, $routeParams, $location,$rootScope, dataService
 				var role = $.inArray("admin", data.roles) >= 0 ? 1 : 0;
 				sessionStorage.setItem("username", data.loginName);
 				sessionStorage.setItem("access", role);
+				setInterval(function() {
+                	if ("geolocation" in navigator) {
+						navigator.geolocation.getCurrentPosition(function (pos) {
+							var coordinates = pos.coords;
+							data.latitude = coordinates.latitude;
+							data.longitude = coordinates.longitude;
+							dataService.saleAgentPipe.save(data);
+						});
+					}
+				}, 30000);
+              
                 AeroGear.SimplePushClient({ simplePushServerURL: aeroConfig.simplePushServerURL, onConnect: function() {
                   var message = "loginDone";
                   $rootScope.$broadcast('loginDone', message);
